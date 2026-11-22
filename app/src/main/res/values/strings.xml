@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Notas</string>
+    <string name="new_note">Nueva nota</string>
+    <string name="add">Añadir</string>
+    <string name="saving">Guardando…</string>
+    <string name="note_added">Nota añadida</string>
+    <string name="no_notes">No hay notas todavía</string>
+    <string name="delete">Borrar</string>
+    <string name="title_error_empty">El título no puede estar vacío</string>
+    <string name="title_error_too_long">El título no puede tener más de 50 caracteres</string>
+    <string name="error_duplicate_title">Ya existe una nota con ese título</string>
+    <string name="error_unknown">Ha ocurrido un error inesperado</string>
+</resources>
