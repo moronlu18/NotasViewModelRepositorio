@@ -30,16 +30,15 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.notas.R
 import com.example.notas.domain.model.Note
 import com.example.notas.presentation.common.ProgressState
 
-// Composable con estado: obtiene el ViewModel y decide qué hacer con el estado
+// Composable con estado: recibe el ViewModel desde MainActivity y decide qué hacer con el estado
 @Composable
 fun NotesScreen(
-    modifier: Modifier = Modifier,
-    viewModel: NotesViewModel = viewModel(factory = NotesViewModel.Factory)
+    viewModel: NotesViewModel,
+    modifier: Modifier = Modifier
 ) {
     val state = viewModel.uiState
     val context = LocalContext.current

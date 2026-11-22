@@ -14,7 +14,7 @@ App de notas: se escribe un título, se pulsa **Añadir** y la nota aparece en l
 - **Mappers**: convierten `TitleError` y `NoteException` en textos de `strings.xml` (`@StringRes`).
 - **ProgressState**: estado común para operaciones que tardan (`Idle`, `Loading`).
 - **State hoisting**: `NotesScreen` tiene el estado y `NotesContent` solo pinta (tiene dos `@Preview`: error y cargando).
-- **Inyección manual**: `AppContainer` expone el repositorio; más adelante lo hará Hilt.
+- **Inyección manual**: `MainActivity` crea `NotesViewModel(AppContainer.noteRepository)` y se lo pasa a `NotesScreen` como parámetro. No hay `Factory`; más adelante esto lo hará Hilt.
 
 No se usan casos de uso: la regla «no puede haber dos notas con el mismo título» la comprueba el repositorio.
 
@@ -45,7 +45,7 @@ app/
 └── src/main/
     ├── AndroidManifest.xml    // Declara MainActivity como launcher
     ├── java/com/example/notas/
-    │   ├── MainActivity.kt    // Solo setContent { NotesScreen() }
+    │   ├── MainActivity.kt    // Crea el ViewModel y llama a NotesScreen(viewModel, ...)
     │   ├── domain/            // Kotlin puro: model, repository, validation, exception, base
     │   ├── data/              // Implementación del repositorio en memoria
     │   ├── di/                // AppContainer (inyección manual)
@@ -78,7 +78,7 @@ com/example/notas/
     └── notes/
         ├── AddNoteState.kt              // Estado de la pantalla
         ├── NotesViewModel.kt            // Eventos y lógica de presentación
-        └── NotesScreen.kt               // NotesScreen (stateful) + NotesContent (stateless)
+        └── NotesScreen.kt               // NotesScreen (recibe el ViewModel) + NotesContent (stateless)
 ```
 
 > Las carpetas `base/` contienen los paquetes `...domain.common` y

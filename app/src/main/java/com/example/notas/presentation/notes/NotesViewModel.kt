@@ -4,12 +4,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.initializer
-import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.notas.R
-import com.example.notas.di.AppContainer
 import com.example.notas.domain.common.BaseResult
 import com.example.notas.domain.exception.NoteException
 import com.example.notas.domain.model.Note
@@ -85,12 +81,5 @@ class NotesViewModel(
 
     private fun loadNotes() {
         uiState = uiState.copy(notes = repository.getNotes())
-    }
-
-    companion object {
-        // Fábrica: le dice a Android CÓMO crear este ViewModel, ya que tiene parámetros
-        val Factory: ViewModelProvider.Factory = viewModelFactory {
-            initializer { NotesViewModel(AppContainer.noteRepository) }
-        }
     }
 }
